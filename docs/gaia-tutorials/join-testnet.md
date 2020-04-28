@@ -2,7 +2,7 @@
 order: 4
 -->
 
-# Join the Public Testnet 
+# Join the Public Testnet
 
 ::: tip Current Testnet
 See the [testnet repo](https://github.com/cosmos/testnets) for
@@ -34,8 +34,8 @@ These instructions are for full nodes that have ran on previous versions of and 
 First, remove the outdated files and reset the data.
 
 ```bash
-rm $HOME/.gaiad/config/addrbook.json $HOME/.gaiad/config/genesis.json
-gaiad unsafe-reset-all
+rm $HOME/.enigmagozd/config/addrbook.json $HOME/.enigmagozd/config/genesis.json
+enigmagozd unsafe-reset-all
 ```
 
 Your node is now in a pristine state while keeping the original `priv_validator.json` and `config.toml`. If you had any sentry nodes or full nodes setup before,

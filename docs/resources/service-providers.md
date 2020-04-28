@@ -6,13 +6,13 @@ order: 5
 
 We define 'service providers' as entities providing services for end-users that involve some form of interaction with a Cosmos-SDK based blockchain (this includes the Cosmos Hub). More specifically, this document will be focused around interactions with tokens.
 
-This section does not concern wallet builders that want to provide Light-Client functionalities. Service providers are expected to act as trusted point of contact to the blockchain for their end-users. 
+This section does not concern wallet builders that want to provide Light-Client functionalities. Service providers are expected to act as trusted point of contact to the blockchain for their end-users.
 
 ## High-level description of the architecture
 
 There are three main pieces to consider:
 
-- Full-nodes: To interact with the blockchain. 
+- Full-nodes: To interact with the blockchain.
 - Rest Server: This acts as a relayer for HTTP calls.
 - Rest API: Define available endpoints for the Rest Server.
 
@@ -20,7 +20,7 @@ There are three main pieces to consider:
 
 ### Installation and configuration
 
-We will describe the steps to run and interact with a full-node for the Cosmos Hub. For other SDK-based blockchain, the process should be similar. 
+We will describe the steps to run and interact with a full-node for the Cosmos Hub. For other SDK-based blockchain, the process should be similar.
 
 First, you need to [install the software](../gaia-tutorials/installation.md).
 
@@ -28,40 +28,40 @@ Then, you can start [running a full-node](../gaia-tutorials/join-mainnet.md).
 
 ### Command-Line interface
 
-## Setting Up `gaiacli`
+## Setting Up `enigmagozcli`
 
 ::: tip
-**Before setting up `gaiacli`, make sure you have set up a way to [access the Cosmos Hub network](#accessing-the-cosmos-hub-network)**
+**Before setting up `enigmagozcli`, make sure you have set up a way to [access the Cosmos Hub network](#accessing-the-cosmos-hub-network)**
 :::
 
 ::: warning
-**Please check that you are always using the latest stable release of `gaiacli`**
+**Please check that you are always using the latest stable release of `enigmagozcli`**
 :::
 
-`gaiacli` is the tool that enables you to interact with the node that runs on the Cosmos Hub network, whether you run it yourself or not. Let us set it up properly.
+`enigmagozcli` is the tool that enables you to interact with the node that runs on the Cosmos Hub network, whether you run it yourself or not. Let us set it up properly.
 
-In order to set up `gaiacli`, use the following command:
+In order to set up `enigmagozcli`, use the following command:
 
 ```bash
-gaiacli config <flag> <value>
+enigmagozcli config <flag> <value>
 ```
 
-It allows you to set a default value for each given flag. 
+It allows you to set a default value for each given flag.
 
 First, set up the address of the full-node you want to connect to:
 
 ```bash
-gaiacli config node <host>:<port
+enigmagozcli config node <host>:<port
 
-// example: gaiacli config node https://77.87.106.33:26657
+// example: enigmagozcli config node https://77.87.106.33:26657
 ```
 
-If you run your own full-node, just use `tcp://localhost:26657` as the address. 
+If you run your own full-node, just use `tcp://localhost:26657` as the address.
 
 Then, let us set the default value of the `--trust-node` flag:
 
 ```bash
-gaiacli config trust-node false
+enigmagozcli config trust-node false
 
 // Set to true if you run a light-client node, false otherwise
 ```
@@ -69,7 +69,7 @@ gaiacli config trust-node false
 Finally, let us set the `chain-id` of the blockchain we want to interact with:
 
 ```bash
-gaiacli config chain-id cosmoshub-2
+enigmagozcli config chain-id cosmoshub-2
 ```
 
 Next you will find a few useful CLI commands to interact with the Full-Node.
@@ -79,13 +79,13 @@ Next you will find a few useful CLI commands to interact with the Full-Node.
 To generate a new key (default secp256k1 elliptic curve):
 
 ```bash
-gaiacli keys add <your_key_name>
+enigmagozcli keys add <your_key_name>
 ```
 
 You will be asked to create a password (at least 8 characters) for this key-pair. This will return the information listed below:
 
 - `NAME`: Name of your key
-- `TYPE`: Type of your key, always `local`. 
+- `TYPE`: Type of your key, always `local`.
 - `ADDRESS`: Your address. Used to receive funds.
 - `PUBKEY`: Your public key. Useful for validators.
 - `MNEMONIC`: 24-words phrase. **Save this mnemonic somewhere safe**. It is used to recover your private key in case you forget the password.
@@ -93,7 +93,7 @@ You will be asked to create a password (at least 8 characters) for this key-pair
 You can see all your available keys by typing:
 
 ```bash
-gaiacli keys list
+enigmagozcli keys list
 ```
 
 #### Checking your balance
@@ -101,18 +101,18 @@ gaiacli keys list
 After receiving tokens to your address, you can view your account's balance by typing:
 
 ```bash
-gaiacli query account <YOUR_ADDRESS>
+enigmagozcli query account <YOUR_ADDRESS>
 ```
 
-*Note: When you query an account balance with zero tokens, you will get this error: No account with address <YOUR_ADDRESS> was found in the state. This is expected! We're working on improving our error messages.*
+_Note: When you query an account balance with zero tokens, you will get this error: No account with address <YOUR_ADDRESS> was found in the state. This is expected! We're working on improving our error messages._
 
 #### Sending coins via the CLI
 
 Here is the command to send coins via the CLI:
 
 ```bash
-gaiacli tx send <from_key_or_address> <to_address> <amount> \
-    --chain-id=<name_of_testnet_chain> 
+enigmagozcli tx send <from_key_or_address> <to_address> <amount> \
+    --chain-id=<name_of_testnet_chain>
 ```
 
 Parameters:
@@ -130,26 +130,26 @@ Flags:
 If you need to do something else, the best command you can run is:
 
 ```bash
-gaiacli 
+enigmagozcli
 ```
 
-It will display all the available commands. For each command, you can use the `--help` flag to get further information. 
+It will display all the available commands. For each command, you can use the `--help` flag to get further information.
 
 ## Setting up the Rest Server
 
-The Rest Server acts as an intermediary between the front-end and the full-node. You don't need to run the Rest Server on the same machine as the full-node. 
+The Rest Server acts as an intermediary between the front-end and the full-node. You don't need to run the Rest Server on the same machine as the full-node.
 
-To start the Rest server: 
+To start the Rest server:
 
 ```bash
-gaiacli rest-server --node=<full_node_address:full_node_port>
+enigmagozcli rest-server --node=<full_node_address:full_node_port>
 ```
 
 Flags:
-- `--trust-node`: A boolean. If `true`, light-client verification is disabled. If `false`, it is disabled. For service providers, this should be set to `true`. By default, it set to `true`. 
+
+- `--trust-node`: A boolean. If `true`, light-client verification is disabled. If `false`, it is disabled. For service providers, this should be set to `true`. By default, it set to `true`.
 - `--node`: This is where you indicate the address and the port of your full-node. The format is `<full_node_address:full_node_port>`. If the full-node is on the same machine, the address should be `tcp://localhost:26657`.
 - `--laddr`: This flag allows you to specify the address and port for the Rest Server (default `1317`). You will mostly use this flag only to specify the port, in which case just input "localhost" for the address. The format is <rest_server_address:port>.
-
 
 ### Listening for incoming transaction
 
@@ -180,7 +180,7 @@ you need to use the field `generate_only` in the body of `base_req`.
 
 Cosmos SDK transaction signing is a fairly simple process.
 
-Every Cosmos SDK transaction has a canonical JSON representation. The `gaiacli`
+Every Cosmos SDK transaction has a canonical JSON representation. The `enigmagozcli`
 and Stargate REST interfaces provide canonical JSON representations of transactions
 and their "broadcast" functions will provide compact Amino (a protobuf-like wire format)
 encoding translations.
@@ -209,7 +209,7 @@ The `"account_number"` and `"sequence"` fields can be queried directly from the
 blockchain or cached locally. Getting these numbers wrong, along with the chainID,
 is a common cause of invalid signature error. You can load the mempool of a full
 node or validator with a sequence of uncommitted transactions with incrementing
-sequence numbers and it will mostly do the correct thing.  
+sequence numbers and it will mostly do the correct thing.
 
 Before signing, all keys are lexicographically sorted and all white space is
 removed from the JSON output.
@@ -221,7 +221,7 @@ Tendermint assumes the PubKey is always provided anyway.
 
 Signatures and public key examples in a signed transaction:
 
-``` json
+```json
 {
   "type": "auth/StdTx",
   "value": {

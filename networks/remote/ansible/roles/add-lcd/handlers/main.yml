@@ -1,9 +1,6 @@
 ---
-
 - name: systemctl
-  systemd: name=gaiacli enabled=yes daemon_reload=yes
+  systemd: name=enigmagozcli enabled=yes daemon_reload=yes
 
-- name: restart gaiacli
-  service: name=gaiacli state=restarted
-
-
+- name: restart enigmagozcli
+  service: name=enigmagozcli state=restarted

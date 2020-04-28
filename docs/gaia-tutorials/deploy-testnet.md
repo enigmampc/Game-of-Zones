@@ -4,7 +4,7 @@ order: 6
 
 # Deploy Your Own Gaia Testnet
 
-This document describes 3 ways to setup a network of `gaiad` nodes, each serving a different usecase:
+This document describes 3 ways to setup a network of `enigmagozd` nodes, each serving a different usecase:
 
 1. Single-node, local, manual testnet
 2. Multi-node, local, automated testnet
@@ -18,10 +18,10 @@ Supporting code can be found in the [networks directory](https://github.com/cosm
 
 In case you need to use or deploy gaia as a container you could skip the `build` steps and use the official images, \$TAG stands for the version you are interested in:
 
-- `docker run -it -v ~/.gaiad:/root/.gaiad -v ~/.gaiacli:/root/.gaiacli tendermint:$TAG gaiad init`
-- `docker run -it -p 26657:26657 -p 26656:26656 -v ~/.gaiad:/root/.gaiad -v ~/.gaiacli:/root/.gaiacli tendermint:$TAG gaiad start`
+- `docker run -it -v ~/.enigmagozd:/root/.enigmagozd -v ~/.enigmagozcli:/root/.enigmagozcli tendermint:$TAG enigmagozd init`
+- `docker run -it -p 26657:26657 -p 26656:26656 -v ~/.enigmagozd:/root/.enigmagozd -v ~/.enigmagozcli:/root/.enigmagozcli tendermint:$TAG enigmagozd start`
 - ...
-- `docker run -it -v ~/.gaiad:/root/.gaiad -v ~/.gaiacli:/root/.gaiacli tendermint:$TAG gaiacli version`
+- `docker run -it -v ~/.enigmagozd:/root/.enigmagozd -v ~/.enigmagozcli:/root/.enigmagozcli tendermint:$TAG enigmagozcli version`
 
 The same images can be used to build your own docker-compose stack.
 
@@ -41,27 +41,27 @@ This guide helps you create a single validator node that runs a network locally 
 cd $HOME
 
 # Initialize the genesis.json file that will help you to bootstrap the network
-gaiad init --chain-id=testing testing
+enigmagozd init --chain-id=testing testing
 
 # Create a key to hold your validator account
-gaiacli keys add validator
+enigmagozcli keys add validator
 
 # Add that key into the genesis.app_state.accounts array in the genesis file
 # NOTE: this command lets you set the number of coins. Make sure this account has some coins
 # with the genesis.app_state.staking.params.bond_denom denom, the default is staking
-gaiad add-genesis-account $(gaiacli keys show validator -a) 1000000000stake,1000000000validatortoken
+enigmagozd add-genesis-account $(enigmagozcli keys show validator -a) 1000000000stake,1000000000validatortoken
 
 # Generate the transaction that creates your validator
-gaiad gentx --name validator
+enigmagozd gentx --name validator
 
 # Add the generated bonding transaction to the genesis file
-gaiad collect-gentxs
+enigmagozd collect-gentxs
 
-# Now its safe to start `gaiad`
-gaiad start
+# Now its safe to start `enigmagozd`
+enigmagozd start
 ```
 
-This setup puts all the data for `gaiad` in `~/.gaiad`. You can examine the genesis file you created at `~/.gaiad/config/genesis.json`. With this configuration `gaiacli` is also ready to use and has an account with tokens (both staking and custom).
+This setup puts all the data for `enigmagozd` in `~/.enigmagozd`. You can examine the genesis file you created at `~/.enigmagozd/config/genesis.json`. With this configuration `enigmagozcli` is also ready to use and has an account with tokens (both staking and custom).
 
 ## Multi-node, Local, Automated Testnet
 
@@ -75,7 +75,7 @@ From the [networks/local directory](https://github.com/cosmos/gaia/tree/master/n
 
 ### Build
 
-Build the `gaiad` binary (linux) and the `tendermint/gaiadnode` docker image required for running the `localnet` commands. This binary will be mounted into the container and can be updated rebuilding the image, so you only need to build the image once.
+Build the `enigmagozd` binary (linux) and the `tendermint/gaiadnode` docker image required for running the `localnet` commands. This binary will be mounted into the container and can be updated rebuilding the image, so you only need to build the image once.
 
 ```bash
 # Clone the gaia repo
@@ -118,55 +118,55 @@ make build-linux localnet-start
 ### Configuration
 
 The `make localnet-start` creates files for a 4-node testnet in `./build` by
-calling the `gaiad testnet` command. This outputs a handful of files in the
+calling the `enigmagozd testnet` command. This outputs a handful of files in the
 `./build` directory:
 
 ```bash
 $ tree -L 2 build/
 build/
-├── gaiacli
-├── gaiad
+├── enigmagozcli
+├── enigmagozd
 ├── gentxs
 │   ├── node0.json
 │   ├── node1.json
 │   ├── node2.json
 │   └── node3.json
 ├── node0
-│   ├── gaiacli
+│   ├── enigmagozcli
 │   │   ├── key_seed.json
 │   │   └── keys
-│   └── gaiad
-│       ├── ${LOG:-gaiad.log}
+│   └── enigmagozd
+│       ├── ${LOG:-enigmagozd.log}
 │       ├── config
 │       └── data
 ├── node1
-│   ├── gaiacli
+│   ├── enigmagozcli
 │   │   └── key_seed.json
-│   └── gaiad
-│       ├── ${LOG:-gaiad.log}
+│   └── enigmagozd
+│       ├── ${LOG:-enigmagozd.log}
 │       ├── config
 │       └── data
 ├── node2
-│   ├── gaiacli
+│   ├── enigmagozcli
 │   │   └── key_seed.json
-│   └── gaiad
-│       ├── ${LOG:-gaiad.log}
+│   └── enigmagozd
+│       ├── ${LOG:-enigmagozd.log}
 │       ├── config
 │       └── data
 └── node3
-    ├── gaiacli
+    ├── enigmagozcli
     │   └── key_seed.json
-    └── gaiad
-        ├── ${LOG:-gaiad.log}
+    └── enigmagozd
+        ├── ${LOG:-enigmagozd.log}
         ├── config
         └── data
 ```
 
-Each `./build/nodeN` directory is mounted to the `/gaiad` directory in each container.
+Each `./build/nodeN` directory is mounted to the `/enigmagozd` directory in each container.
 
 ### Logging
 
-Logs are saved under each `./build/nodeN/gaiad/gaia.log`. You can also watch logs
+Logs are saved under each `./build/nodeN/enigmagozd/gaia.log`. You can also watch logs
 directly via Docker, for example:
 
 ```
@@ -175,18 +175,18 @@ docker logs -f gaiadnode0
 
 ### Keys & Accounts
 
-To interact with `gaiacli` and start querying state or creating txs, you use the
-`gaiacli` directory of any given node as your `home`, for example:
+To interact with `enigmagozcli` and start querying state or creating txs, you use the
+`enigmagozcli` directory of any given node as your `home`, for example:
 
 ```shell
-gaiacli keys list --home ./build/node0/gaiacli
+enigmagozcli keys list --home ./build/node0/enigmagozcli
 ```
 
 Now that accounts exists, you may create new accounts and send those accounts
 funds!
 
 ::: tip
-**Note**: Each node's seed is located at `./build/nodeN/gaiacli/key_seed.json` and can be restored to the CLI using the `gaiacli keys add --restore` command
+**Note**: Each node's seed is located at `./build/nodeN/enigmagozcli/key_seed.json` and can be restored to the CLI using the `enigmagozcli keys add --restore` command
 :::
 
 ### Special Binaries

@@ -1,13 +1,12 @@
 ---
-name: Bug Report 
+name: Bug Report
 about: Create a report to help us squash bugs!
-
 ---
 
-<!-- < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < ☺ 
-v                            ✰  Thanks for opening an issue! ✰    
+<!-- < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < < ☺
+v                            ✰  Thanks for opening an issue! ✰
 v    Before smashing the submit button please review the template.
-v    Please also ensure that this is not a duplicate issue :)  
+v    Please also ensure that this is not a duplicate issue :)
 ☺ > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > >  -->
 
 ## Summary of Bug
@@ -16,13 +15,13 @@ v    Please also ensure that this is not a duplicate issue :)
 
 ## Version
 
-<!-- git commit hash, output of `gaiacli version`, output of `gaiad version` -->
+<!-- git commit hash, output of `enigmagozcli version`, output of `enigmagozd version` -->
 
 ## Steps to Reproduce
 
 <!-- What commands in order should someone run to reproduce your problem -->
 
-____
+---
 
 #### For Admin Use
 

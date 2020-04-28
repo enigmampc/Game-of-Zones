@@ -53,8 +53,8 @@ func main() {
 	// with the cdc
 
 	rootCmd := &cobra.Command{
-		Use:   "gaiacli",
-		Short: "Command line interface for interacting with gaiad",
+		Use:   "enigmagozcli",
+		Short: "Command line interface for interacting with enigmagozd",
 	}
 
 	// Add --chain-id to persistent flags and mark it required

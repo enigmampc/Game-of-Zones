@@ -9,12 +9,12 @@ There is a strong social consensus around proposal `Cosmos Hub 3 Upgrade Proposa
 on `cosmoshub-2`. This indicates that the upgrade procedure should be performed
 on `December 11, 2019 at or around 14:27 UTC` on block `2,902,000`.
 
-  - [Preliminary](#preliminary)
-  - [Major Updates](#major-updates)
-  - [Risks](#risks)
-  - [Recovery](#recovery)
-  - [Upgrade Procedure](#upgrade-procedure)
-  - [Notes for Service Providers](#notes-for-service-providers)
+- [Preliminary](#preliminary)
+- [Major Updates](#major-updates)
+- [Risks](#risks)
+- [Recovery](#recovery)
+- [Upgrade Procedure](#upgrade-procedure)
+- [Notes for Service Providers](#notes-for-service-providers)
 
 ## Preliminary
 
@@ -36,8 +36,8 @@ semantic versioning, the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/) wil
 on its current versioning path (i.e. v0.36.x ) and the [Gaia](https://github.com/cosmos/gaia)
 application will become v2.0.x.
 
-__[Gaia](https://github.com/cosmos/gaia) application v2.0.3 is
-what full node operators will upgrade to and run in this next major upgrade__.
+**[Gaia](https://github.com/cosmos/gaia) application v2.0.3 is
+what full node operators will upgrade to and run in this next major upgrade**.
 
 ## Major Updates
 
@@ -75,16 +75,16 @@ before resetting your validator.
 
 Prior to exporting `cosmoshub-2` state, validators are encouraged to take a full data snapshot at the
 export height before proceeding. Snapshotting depends heavily on infrastructure, but generally this
-can be done by backing up the `.gaiacli` and `.gaiad` directories.
+can be done by backing up the `.enigmagozcli` and `.enigmagozd` directories.
 
-It is critically important to back-up the `.gaiad/data/priv_validator_state.json` file after stopping your gaiad process. This file is updated every block as your validator participates in a consensus rounds. It is a critical file needed to prevent double-signing, in case the upgrade fails and the previous chain needs to be restarted.
+It is critically important to back-up the `.enigmagozd/data/priv_validator_state.json` file after stopping your enigmagozd process. This file is updated every block as your validator participates in a consensus rounds. It is a critical file needed to prevent double-signing, in case the upgrade fails and the previous chain needs to be restarted.
 
 In the event that the upgrade does not succeed, validators and operators must downgrade back to
 v0.34.6+ of the _Cosmos SDK_ and restore to their latest snapshot before restarting their nodes.
 
 ## Upgrade Procedure
 
-__Note__: It is assumed you are currently operating a full-node running v0.34.6+ of the _Cosmos SDK_.
+**Note**: It is assumed you are currently operating a full-node running v0.34.6+ of the _Cosmos SDK_.
 
 - The version/commit hash of Gaia v2.0.3: `2f6783e298f25ff4e12cb84549777053ab88749a`
 - The upgrade height as agreed upon by governance: **2,902,000**
@@ -96,7 +96,7 @@ __Note__: It is assumed you are currently operating a full-node running v0.34.6+
 1. Verify you are currently running the correct version (v0.34.6+) of the _Cosmos SDK_:
 
    ```shell
-   $ gaiad version --long
+   $ enigmagozd version --long
    cosmos-sdk: 0.34.6
    git commit: 80234baf91a15dd9a7df8dca38677b66b8d148c1
    vendor hash: f60176672270c09455c01e9d880079ba36130df4f5cd89df58b6701f50b13aad
@@ -111,10 +111,10 @@ __Note__: It is assumed you are currently operating a full-node running v0.34.6+
    comes online in a sufficient and agreed upon amount of time. In such a case, the chain will fallback
    to continue operating `cosmoshub-2`. See [Recovery](#recovery) for details on how to proceed.
 
-   Before exporting state via the following command, the `gaiad` binary must be stopped!
+   Before exporting state via the following command, the `enigmagozd` binary must be stopped!
 
    ```shell
-   $ gaiad export --for-zero-height --height=2902000 > cosmoshub_2_genesis_export.json
+   $ enigmagozd export --for-zero-height --height=2902000 > cosmoshub_2_genesis_export.json
    ```
 
 3. Verify the SHA256 of the (sorted) exported genesis file:
@@ -125,7 +125,7 @@ __Note__: It is assumed you are currently operating a full-node running v0.34.6+
    ```
 
 4. At this point you now have a valid exported genesis state! All further steps now require
-v2.0.3 of [Gaia](https://github.com/cosmos/gaia).
+   v2.0.3 of [Gaia](https://github.com/cosmos/gaia).
 
    **NOTE**: Go [1.13+](https://golang.org/dl/) is required!
 
@@ -136,10 +136,10 @@ v2.0.3 of [Gaia](https://github.com/cosmos/gaia).
 5. Verify you are currently running the correct version (v2.0.3) of the _Gaia_:
 
    ```shell
-   $ gaiad version --long
+   $ enigmagozd version --long
    name: gaia
-   server_name: gaiad
-   client_name: gaiacli
+   server_name: enigmagozd
+   client_name: enigmagozcli
    version: 2.0.3
    commit: 2f6783e298f25ff4e12cb84549777053ab88749a
    build_tags: netgo,ledger
@@ -149,7 +149,7 @@ v2.0.3 of [Gaia](https://github.com/cosmos/gaia).
 6. Migrate exported state from the current v0.34.6+ version to the new v2.0.3 version:
 
    ```shell
-   $ gaiad migrate v0.36 cosmoshub_2_genesis_export.json --chain-id=cosmoshub-3 --genesis-time=[PLACEHOLDER]> genesis.json
+   $ enigmagozd migrate v0.36 cosmoshub_2_genesis_export.json --chain-id=cosmoshub-3 --genesis-time=[PLACEHOLDER]> genesis.json
    ```
 
    **NOTE**: The `migrate` command takes an input genesis state and migrates it to a targeted version.
@@ -165,7 +165,7 @@ v2.0.3 of [Gaia](https://github.com/cosmos/gaia).
    ```
 
 7. Now we must update all parameters that have been agreed upon through governance. There is only a
-single parameter, `max_validators`, that we're upgrading based on [proposal 10](https://www.mintscan.io/proposals/10)
+   single parameter, `max_validators`, that we're upgrading based on [proposal 10](https://www.mintscan.io/proposals/10)
 
    ```shell
    $ cat genesis.json | jq '.app_state["staking"]["params"]["max_validators"]=125' > tmp_genesis.json && mv tmp_genesis.json genesis.json
@@ -184,20 +184,20 @@ single parameter, `max_validators`, that we're upgrading based on [proposal 10](
    See [Recovery](#recovery) for details on how to proceed.
 
    ```shell
-   $ gaiad unsafe-reset-all
+   $ enigmagozd unsafe-reset-all
    ```
 
-10. Move the new `genesis.json` to your `.gaiad/config/` directory
-11. Replace the `db_backend` on `.gaiad/config/config.toml` to:
+10. Move the new `genesis.json` to your `.enigmagozd/config/` directory
+11. Replace the `db_backend` on `.enigmagozd/config/config.toml` to:
 
     ```toml
     db_backend = "goleveldb"
     ```
 
-12. Note, if you have any application configuration in `gaiad.toml`, that file has now been renamed to `app.toml`:
+12. Note, if you have any application configuration in `enigmagozd.toml`, that file has now been renamed to `app.toml`:
 
     ```shell
-    $ mv .gaiad/config/gaiad.toml .gaiad/config/app.toml
+    $ mv .enigmagozd/config/enigmagozd.toml .enigmagozd/config/app.toml
     ```
 
 ## Notes for Service Providers
@@ -206,7 +206,7 @@ single parameter, `max_validators`, that we're upgrading based on [proposal 10](
    After this upgrade will maintain the CosmosSDK API stability guarantee to avoid breaking APIs for at
    least 6 months and hopefully long.
 2. Anyone running signing infrastructure(wallets and exchanges) should be conscious that the `type:`
-   field on `StdTx` will have changed from `"type":"auth/StdTx","value":...` to  `"type":"cosmos-sdk/StdTx","value":...`
+   field on `StdTx` will have changed from `"type":"auth/StdTx","value":...` to `"type":"cosmos-sdk/StdTx","value":...`
 3. As mentioned in the notes and SDK CHANGELOG, many queries to cosmos cli are wrapped with `height` fields now.
 4. We highly recommend standing up a [testnet](https://github.com/cosmos/gaia/blob/master/docs/deploy-testnet.md)
    with the `gaia-2.0` release or joining the gaia-13006 testnet. More info for joining the testnet can be

@@ -18,7 +18,7 @@ Atoms. Please read through the entire guide first to familiarize yourself
 before you actually do anything: [CLI guide][cli]
 
 The process outlined in the guide is currently the only verified and secure way
-to delegate Atoms at launch. This is because the gaiacli tool used in the guide
+to delegate Atoms at launch. This is because the enigmagozcli tool used in the guide
 is the only wallet software undergoing third-party security audits right now.
 No other wallet providers have begun security audits yet.
 
@@ -138,9 +138,9 @@ reduce or eliminate the risk of key or credential theft.
 Cosmos mainnet launch:**
 
 - Download software directly from official sources, and make sure that you’re
-  always using the latest, most secure version of gaiacli when you’re doing
+  always using the latest, most secure version of enigmagozcli when you’re doing
   anything that involves your 12 words. The latest versions of Tendermint, the
-  Cosmos-SDK, and gaiacli will always be available from our official GitHub
+  Cosmos-SDK, and enigmagozcli will always be available from our official GitHub
   repositories, and downloading them from there ensures that you will not be
   tricked into using a maliciously modified version of software.
 
@@ -159,14 +159,14 @@ Cosmos mainnet launch:**
   [here][quiz].
 
 - Do your due diligence before purchasing Atoms. Atoms will not be transferable
-  at launch, so they *cannot* be bought or sold until a hard fork enables them
+  at launch, so they _cannot_ be bought or sold until a hard fork enables them
   to be. If and when they become transferable, make sure that you’ve researched
   the seller or exchange to confirm that the Atoms are coming from a
   trustworthy source.
 
 - Neither the Tendermint team nor the Interchain Foundation will be selling
   Atoms, so if you see social media posts or emails advertising a token sale
-  from us, they’re not real and should be avoided.  Enable 2-factor
+  from us, they’re not real and should be avoided. Enable 2-factor
   authentication, and be mindful of recovery methods used to regain access to
   your most important accounts. Unprotected accounts like email, social media,
   your GitHub account, the Cosmos Forum and anything in between could give an
@@ -188,14 +188,14 @@ Cosmos mainnet launch:**
   difference between sending them to the right place or sending them into
   oblivion.
 
-*If a deal pops up that [sounds too good to be true][good], or a message shows
+_If a deal pops up that [sounds too good to be true][good], or a message shows
 up asking for information that should never, ever be shared with someone else,
 you can always work to verify it before engaging with it by navigating to a
 website or official Cosmos communication channel on your own. No one from
 Cosmos, the Tendermint team or the Interchain Foundation will ever send an
 email that asks for you to share any kind of account credentials or your 12
 words with us, and we will always use our official blog, Twitter and GitHub
-accounts to communicate important news directly to the Cosmos community.*
+accounts to communicate important news directly to the Cosmos community._
 
 [whitepaper]: https://cosmos.network/resources/whitepaper
 [fundraiser]: https://fundraiser.cosmos.network/

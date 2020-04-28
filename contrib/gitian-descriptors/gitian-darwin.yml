@@ -3,27 +3,27 @@ name: "gaia-darwin"
 enable_cache: true
 distro: "ubuntu"
 suites:
-- "bionic"
+  - "bionic"
 architectures:
-- "amd64"
+  - "amd64"
 packages:
-- "bsdmainutils"
-- "build-essential"
-- "ca-certificates"
-- "curl"
-- "debhelper"
-- "dpkg-dev"
-- "devscripts"
-- "fakeroot"
-- "git"
-- "golang-any"
-- "xxd"
-- "quilt"
+  - "bsdmainutils"
+  - "build-essential"
+  - "ca-certificates"
+  - "curl"
+  - "debhelper"
+  - "dpkg-dev"
+  - "devscripts"
+  - "fakeroot"
+  - "git"
+  - "golang-any"
+  - "xxd"
+  - "quilt"
 remotes:
-- "url": "https://github.com/cosmos/gaia.git"
-  "dir": "gaia"
+  - "url": "https://github.com/cosmos/gaia.git"
+    "dir": "gaia"
 files:
-- "go1.14.linux-amd64.tar.gz"
+  - "go1.14.linux-amd64.tar.gz"
 script: |
   set -e -o pipefail
 
@@ -75,8 +75,8 @@ script: |
   # Configure LDFLAGS for reproducible builds
   LDFLAGS="-extldflags=-static -buildid=${VERSION} -s -w \
     -X github.com/cosmos/cosmos-sdk/version.Name=gaia \
-    -X github.com/cosmos/cosmos-sdk/version.ServerName=gaiad \
-    -X github.com/cosmos/cosmos-sdk/version.ClientName=gaiacli \
+    -X github.com/cosmos/cosmos-sdk/version.ServerName=enigmagozd \
+    -X github.com/cosmos/cosmos-sdk/version.ClientName=enigmagozcli \
     -X github.com/cosmos/cosmos-sdk/version.Version=${VERSION} \
     -X github.com/cosmos/cosmos-sdk/version.Commit=${COMMIT} \
     -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger"
@@ -88,7 +88,7 @@ script: |
 
     # Build gaia tool suite
     pushd ${distsrc}
-    for prog in gaiacli gaiad; do
+    for prog in enigmagozcli enigmagozd; do
       GOARCH=${arch} GOROOT_FINAL=${GOROOT} go build -a \
         -trimpath \
         -gcflags=all=-trimpath=${GOPATH} \

@@ -1,5 +1,3 @@
 ---
-
-- name: restart gaiad
-  service: name=gaiad state=restarted
-
+- name: restart enigmagozd
+  service: name=enigmagozd state=restarted

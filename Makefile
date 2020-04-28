@@ -49,8 +49,8 @@ build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 # process linker flags
 
 ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=gaia \
-		  -X github.com/cosmos/cosmos-sdk/version.ServerName=gaiad \
-		  -X github.com/cosmos/cosmos-sdk/version.ClientName=gaiacli \
+		  -X github.com/cosmos/cosmos-sdk/version.ServerName=enigmagozd \
+		  -X github.com/cosmos/cosmos-sdk/version.ClientName=enigmagozcli \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)"
@@ -81,11 +81,11 @@ all: install lint test
 
 build: go.sum
 ifeq ($(OS),Windows_NT)
-	go build -mod=readonly $(BUILD_FLAGS) -o build/gaiad.exe ./cmd/gaiad
-	go build -mod=readonly $(BUILD_FLAGS) -o build/gaiacli.exe ./cmd/gaiacli
+	go build -mod=readonly $(BUILD_FLAGS) -o build/enigmagozd.exe ./cmd/enigmagozd
+	go build -mod=readonly $(BUILD_FLAGS) -o build/enigmagozcli.exe ./cmd/enigmagozcli
 else
-	go build -mod=readonly $(BUILD_FLAGS) -o build/gaiad ./cmd/gaiad
-	go build -mod=readonly $(BUILD_FLAGS) -o build/gaiacli ./cmd/gaiacli
+	go build -mod=readonly $(BUILD_FLAGS) -o build/enigmagozd ./cmd/enigmagozd
+	go build -mod=readonly $(BUILD_FLAGS) -o build/enigmagozcli ./cmd/enigmagozcli
 endif
 
 build-linux: go.sum
@@ -99,8 +99,8 @@ else
 endif
 
 install: go.sum
-	go install -mod=readonly $(BUILD_FLAGS) ./cmd/gaiad
-	go install -mod=readonly $(BUILD_FLAGS) ./cmd/gaiacli
+	go install -mod=readonly $(BUILD_FLAGS) ./cmd/enigmagozd
+	go install -mod=readonly $(BUILD_FLAGS) ./cmd/enigmagozcli
 
 go-mod-cache: go.sum
 	@echo "--> Download go modules to local cache"
@@ -113,7 +113,7 @@ go.sum: go.mod
 draw-deps:
 	@# requires brew install graphviz or apt-get install graphviz
 	go get github.com/RobotsAndPencils/goviz
-	@goviz -i ./cmd/gaiad -d 2 | dot -Tpng -o dependency-graph.png
+	@goviz -i ./cmd/enigmagozd -d 2 | dot -Tpng -o dependency-graph.png
 
 clean:
 	rm -rf snapcraft-local.yaml build/
@@ -191,7 +191,7 @@ build-docker-gaiadnode:
 
 # Run a 4-node testnet locally
 localnet-start: build-linux localnet-stop
-	@if ! [ -f build/node0/gaiad/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/gaiad:Z tendermint/gaiadnode testnet --v 4 -o . --starting-ip-address 192.168.10.2 --keyring-backend=test ; fi
+	@if ! [ -f build/node0/enigmagozd/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/enigmagozd:Z tendermint/gaiadnode testnet --v 4 -o . --starting-ip-address 192.168.10.2 --keyring-backend=test ; fi
 	docker-compose up -d
 
 # Stop testnet
@@ -203,11 +203,11 @@ setup-contract-tests-data:
 	rm -rf /tmp/contract_tests ; \
 	mkdir /tmp/contract_tests ; \
 	cp "${GOPATH}/pkg/mod/${SDK_PACK}/client/lcd/swagger-ui/swagger.yaml" /tmp/contract_tests/swagger.yaml ; \
-	./build/gaiad init --home /tmp/contract_tests/.gaiad --chain-id lcd contract-tests ; \
+	./build/enigmagozd init --home /tmp/contract_tests/.enigmagozd --chain-id lcd contract-tests ; \
 	tar -xzf lcd_test/testdata/state.tar.gz -C /tmp/contract_tests/
 
 start-gaia: setup-contract-tests-data
-	./build/gaiad --home /tmp/contract_tests/.gaiad start &
+	./build/enigmagozd --home /tmp/contract_tests/.enigmagozd start &
 	@sleep 2s
 
 setup-transactions: start-gaia
@@ -215,11 +215,11 @@ setup-transactions: start-gaia
 
 run-lcd-contract-tests:
 	@echo "Running Gaia LCD for contract tests"
-	./build/gaiacli rest-server --laddr tcp://0.0.0.0:8080 --home /tmp/contract_tests/.gaiacli --node http://localhost:26657 --chain-id lcd --trust-node true
+	./build/enigmagozcli rest-server --laddr tcp://0.0.0.0:8080 --home /tmp/contract_tests/.enigmagozcli --node http://localhost:26657 --chain-id lcd --trust-node true
 
 contract-tests: setup-transactions
 	@echo "Running Gaia LCD for contract tests"
-	dredd && pkill gaiad
+	dredd && pkill enigmagozd
 
 test-docker:
 	@docker build -f contrib/Dockerfile.test -t ${TEST_DOCKER_REPO}:$(shell git rev-parse --short HEAD) .

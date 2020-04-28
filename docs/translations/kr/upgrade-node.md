@@ -1,10 +1,10 @@
 # 노드 업그레이드 하기
 
-이 문서는 `gaiad` 풀노드를 새로운 버전으로 업그레이드하는 절차를 설명합니다.
+이 문서는 `enigmagozd` 풀노드를 새로운 버전으로 업그레이드하는 절차를 설명합니다.
 
 ## 소프트웨어 업그레이드
 
-우선 `gaiad` 인스턴스를 중지하세요. 이후 소프트웨어를 업그레이드하세요:
+우선 `enigmagozd` 인스턴스를 중지하세요. 이후 소프트웨어를 업그레이드하세요:
 
 ```bash
 cd gaia
@@ -34,7 +34,7 @@ _참고_: 이번 단계에서 문제가 발생하는 경우, 최신 스테이블
 새로운 제네시스 파일을 `new_genesis.json`으로 저장하세요. 이후, 오래된 `genesis.json`을 `new_genesis.json`으로 바꾸세요.
 
 ```bash
-cd $HOME/.gaiad/config
+cd $HOME/.enigmagozd/config
 cp -f genesis.json new_genesis.json
 mv new_genesis.json genesis.json
 ```
@@ -46,8 +46,8 @@ mv new_genesis.json genesis.json
 만약 과거 네트워크 버전에서 노드를 운영하셨고 로컬 환경에서 과거 네트워크의 제네시스 파일을 내보내시는 경우, 다음 명령어를 사용하세요:
 
 ```bash
-cd $HOME/.gaiad/config
-gaiad export --for-zero-height --height=<내보내는_블록_높이(export-height)> > new_genesis.json
+cd $HOME/.enigmagozd/config
+enigmagozd export --for-zero-height --height=<내보내는_블록_높이(export-height)> > new_genesis.json
 ```
 
 위 명령어는 특정 블록 높이(`<내보내는_블록_높이(export-height)>`)의 상태를 기반으로 새로운 제네시스 파일을 생성합니다. 이 제네시스 파일은 새로운 네트워크를 시작하는데 사용됩니다.
@@ -68,7 +68,7 @@ mv new_genesis.json genesis.json
 :::
 
 ::: warning
-메인넷에서 **검증인 노드**를 운영하시는 경우, `gaiad unsafe-reset-all` 명령어를 실행하실때 주의를 기울이세요. `chain-id`를 변경하지 않는 이상 이 명령어를 실행할 필요가 없습니다.
+메인넷에서 **검증인 노드**를 운영하시는 경우, `enigmagozd unsafe-reset-all` 명령어를 실행하실때 주의를 기울이세요. `chain-id`를 변경하지 않는 이상 이 명령어를 실행할 필요가 없습니다.
 :::
 
 ::: danger 중요
@@ -79,7 +79,7 @@ mv new_genesis.json genesis.json
 **만약 검증인 노드를 운영하시는 경우, 이 단계를 진행하기 전 따르는 위험을 충분히 숙지하고 진행하세요**.
 
 ```bash
-gaiad unsafe-reset-all
+enigmagozd unsafe-reset-all
 ```
 
 이제 노드는 `priv_validator.json`과 `config.toml`외의 모들 파일이 리셋되었습니다. 업그레이드된 노드는 기존의 연결되었던 센트리 노드와 풀 노드가 존재하는 경우 연결을 시도할 수 있으나, 함께 업그레이드가 진행되지 않으면 연결이 실패할 수 있습니다.
@@ -89,5 +89,5 @@ gaiad unsafe-reset-all
 노드를 다시 시작하기 위해서는 다음 명령어를 실행하세요:
 
 ```bash
-gaiad start
+enigmagozd start
 ```
