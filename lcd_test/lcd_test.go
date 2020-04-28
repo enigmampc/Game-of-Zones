@@ -369,7 +369,7 @@ func TestValidatorsQuery(t *testing.T) {
 	// make sure all the validators were found (order unknown because sorted by operator addr)
 	foundVal := false
 
-	if validators[0].ConsensusPubkey == sdk.MustBech32ifyPubKey(sdk.Bech32PubKeyTypeConsPub, valPubKeys[0]) {
+	if validators[0].ConsensusPubkey == sdk.MustBech32ifyPubKey(app.Bech32PubKeyTypeConsPub, valPubKeys[0]) {
 		foundVal = true
 	}
 
@@ -816,7 +816,7 @@ func TestUnjail(t *testing.T) {
 
 	// NOTE: any less than this and it fails
 	tests.WaitForHeight(3, port)
-	pkString, err := sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeConsPub, valPubKeys[0])
+	pkString, err := sdk.Bech32ifyPubKey(app.Bech32PubKeyTypeConsPub, valPubKeys[0])
 	require.NoError(t, err)
 	signingInfo := getSigningInfo(t, port, pkString)
 	tests.WaitForHeight(4, port)
