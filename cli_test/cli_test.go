@@ -28,7 +28,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/gov"
 	"github.com/cosmos/cosmos-sdk/x/mint"
 
-	"github.com/cosmos/gaia/app"
+	"github.com/enigmampc/Game-of-Zones/app"
 )
 
 var (
@@ -106,7 +106,7 @@ func TestGaiaCLIMinimumFees(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	minGasPrice, _ := sdk.NewDecFromStr("0.000006")
 	fees := fmt.Sprintf(
 		"--minimum-gas-prices=%s,%s",
@@ -144,7 +144,7 @@ func TestGaiaCLIGasPrices(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	minGasPrice, _ := sdk.NewDecFromStr("0.000006")
 	proc := f.GDStart(fmt.Sprintf("--minimum-gas-prices=%s", sdk.NewDecCoinFromDec(feeDenom, minGasPrice)))
 	defer proc.Stop(false)
@@ -178,7 +178,7 @@ func TestGaiaCLIFeesDeduction(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	minGasPrice, _ := sdk.NewDecFromStr("0.000006")
 	proc := f.GDStart(fmt.Sprintf("--minimum-gas-prices=%s", sdk.NewDecCoinFromDec(feeDenom, minGasPrice)))
 	defer proc.Stop(false)
@@ -228,7 +228,7 @@ func TestGaiaCLISend(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -296,7 +296,7 @@ func TestGaiaCLIGasAuto(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -350,7 +350,7 @@ func TestGaiaCLICreateValidator(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -438,7 +438,7 @@ func TestGaiaCLIQueryRewards(t *testing.T) {
 	genDoc.AppState, err = cdc.MarshalJSON(genesisState)
 	require.NoError(t, genDoc.SaveAs(genFile))
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -453,7 +453,7 @@ func TestGaiaCLIQuerySupply(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -470,7 +470,7 @@ func TestGaiaCLISubmitProposal(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -744,7 +744,7 @@ func TestGaiaCLIQueryTxPagination(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -798,7 +798,7 @@ func TestGaiaCLIValidateSignatures(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -847,7 +847,7 @@ func TestGaiaCLISendGenerateSignAndBroadcast(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -946,7 +946,7 @@ func TestGaiaCLIMultisignInsufficientCosigners(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -999,7 +999,7 @@ func TestGaiaCLIEncode(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -1035,7 +1035,7 @@ func TestGaiaCLIMultisignSortSignatures(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -1099,7 +1099,7 @@ func TestGaiaCLIMultisign(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -1300,7 +1300,7 @@ func TestSlashingGetParams(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -1320,7 +1320,7 @@ func TestValidateGenesis(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server
+	// start enigmagozd server
 	proc := f.GDStart()
 	defer proc.Stop(false)
 
@@ -1334,7 +1334,7 @@ func TestGaiaCLIStatus(t *testing.T) {
 	t.Parallel()
 	f := InitFixtures(t)
 
-	// start gaiad server with minimum fees
+	// start enigmagozd server with minimum fees
 	minGasPrice, _ := sdk.NewDecFromStr("0.000006")
 	fees := fmt.Sprintf(
 		"--minimum-gas-prices=%s,%s",

@@ -40,14 +40,14 @@ import (
 	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
 )
 
-const appName = "GaiaApp"
+const appName = "EnigmaGozApp"
 
 var (
-	// DefaultCLIHome default home directories for gaiacli
-	DefaultCLIHome = os.ExpandEnv("$HOME/.gaiacli")
+	// DefaultCLIHome default home directories for enigmagozcli
+	DefaultCLIHome = os.ExpandEnv("$HOME/.enigmagozcli")
 
-	// DefaultNodeHome default home directories for gaiad
-	DefaultNodeHome = os.ExpandEnv("$HOME/.gaiad")
+	// DefaultNodeHome default home directories for enigmagozd
+	DefaultNodeHome = os.ExpandEnv("$HOME/.enigmagozd")
 
 	// ModuleBasics defines the module BasicManager is in charge of setting up basic,
 	// non-dependant module elements, such as codec registration

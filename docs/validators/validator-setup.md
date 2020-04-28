@@ -5,7 +5,7 @@ order: 2
 # Run a Validator on the Cosmos Hub Mainnet
 
 ::: tip
-Information on how to join the mainnet (`genesis.json` file and seeds) is held [in our `launch` repo](https://github.com/cosmos/launch/). 
+Information on how to join the mainnet (`genesis.json` file and seeds) is held [in our `launch` repo](https://github.com/cosmos/launch/).
 :::
 
 Before setting up your validator node, make sure you've already gone through the [Full Node Setup](../gaia-tutorials/join-mainnet.md) guide.
@@ -27,19 +27,19 @@ You may want to skip the next section if you have already [set up a full-node](.
 Your `cosmosvalconspub` can be used to create a new validator by staking tokens. You can find your validator pubkey by running:
 
 ```bash
-gaiad tendermint show-validator
+enigmagozd tendermint show-validator
 ```
 
 To create your validator, just use the following command:
 
-::: warning 
-Don't use more `uatom` than you have! 
+::: warning
+Don't use more `uatom` than you have!
 :::
 
 ```bash
-gaiacli tx staking create-validator \
+enigmagozcli tx staking create-validator \
   --amount=1000000uatom \
-  --pubkey=$(gaiad tendermint show-validator) \
+  --pubkey=$(enigmagozd tendermint show-validator) \
   --moniker="choose a moniker" \
   --chain-id=<chain_id> \
   --commission-rate="0.10" \
@@ -73,21 +73,21 @@ you have some stake at genesis, create one (or multiple) transactions to bond th
 Your `cosmosvalconspub` can be used to create a new validator by staking tokens. You can find your validator pubkey by running:
 
 ```bash
-gaiad tendermint show-validator
+enigmagozd tendermint show-validator
 ```
 
-Next, craft your `gaiad gentx` command. 
+Next, craft your `enigmagozd gentx` command.
 
 ::: tip
 A `gentx` is a JSON file carrying a self-delegation. All genesis transactions are collected by a `genesis coordinator` and validated against an initial `genesis.json`.
 :::
 
 ::: warning Note
-Don't use more `uatom` than you have! 
+Don't use more `uatom` than you have!
 :::
 
 ```bash
-gaiad gentx \
+enigmagozd gentx \
   --amount <amount_of_delegation_uatom> \
   --commission-rate <commission_rate> \
   --commission-max-rate <commission_max_rate> \
@@ -100,7 +100,7 @@ gaiad gentx \
 When specifying commission parameters, the `commission-max-change-rate` is used to measure % _point_ change over the `commission-rate`. E.g. 1% to 2% is a 100% rate increase, but only 1 percentage point.
 :::
 
-You can then submit your `gentx` on the [launch repository](https://github.com/cosmos/launch). These `gentx` will be used to form the final genesis file. 
+You can then submit your `gentx` on the [launch repository](https://github.com/cosmos/launch). These `gentx` will be used to form the final genesis file.
 
 ## Edit Validator Description
 
@@ -111,7 +111,7 @@ The <key_name> specifies which validator you are editing. If you choose to not i
 The `--identity` can be used as to verify identity with systems like Keybase or UPort. When using with Keybase `--identity` should be populated with a 16-digit string that is generated with a [keybase.io](https://keybase.io) account. It's a cryptographically secure method of verifying your identity across multiple online networks. The Keybase API allows us to retrieve your Keybase avatar. This is how you can add a logo to your validator profile.
 
 ```bash
-gaiacli tx staking edit-validator
+enigmagozcli tx staking edit-validator
   --moniker="choose a moniker" \
   --website="https://cosmos.network" \
   --identity=6A0D65E29A4CBC8E \
@@ -123,7 +123,7 @@ gaiacli tx staking edit-validator
   --commission-rate="0.10"
 ```
 
-__Note__: The `commission-rate` value must adhere to the following invariants:
+**Note**: The `commission-rate` value must adhere to the following invariants:
 
 - Must be between 0 and the validator's `commission-max-rate`
 - Must not exceed the validator's `commission-max-change-rate` which is maximum
@@ -135,7 +135,7 @@ __Note__: The `commission-rate` value must adhere to the following invariants:
 View the validator's information with this command:
 
 ```bash
-gaiacli query staking validator <account_cosmos>
+enigmagozcli query staking validator <account_cosmos>
 ```
 
 ## Track Validator Signing Information
@@ -143,7 +143,7 @@ gaiacli query staking validator <account_cosmos>
 In order to keep track of a validator's signatures in the past you can do so by using the `signing-info` command:
 
 ```bash
-gaiacli query slashing signing-info <validator-pubkey>\
+enigmagozcli query slashing signing-info <validator-pubkey>\
   --chain-id=<chain_id>
 ```
 
@@ -152,7 +152,7 @@ gaiacli query slashing signing-info <validator-pubkey>\
 When a validator is "jailed" for downtime, you must submit an `Unjail` transaction from the operator account in order to be able to get block proposer rewards again (depends on the zone fee distribution).
 
 ```bash
-gaiacli tx slashing unjail \
+enigmagozcli tx slashing unjail \
 	--from=<key_name> \
 	--chain-id=<chain_id>
 ```
@@ -162,10 +162,10 @@ gaiacli tx slashing unjail \
 Your validator is active if the following command returns anything:
 
 ```bash
-gaiacli query tendermint-validator-set | grep "$(gaiad tendermint show-validator)"
+enigmagozcli query tendermint-validator-set | grep "$(enigmagozd tendermint show-validator)"
 ```
 
-You should now see your validator in one of the Cosmos Hub explorers. You are looking for the `bech32` encoded `address` in the `~/.gaiad/config/priv_validator.json` file.
+You should now see your validator in one of the Cosmos Hub explorers. You are looking for the `bech32` encoded `address` in the `~/.enigmagozd/config/priv_validator.json` file.
 
 ::: warning Note
 To be in the validator set, you need to have more total voting power than the 100th validator.
@@ -176,7 +176,7 @@ To be in the validator set, you need to have more total voting power than the 10
 When attempting to perform routine maintenance or planning for an upcoming coordinated
 upgrade, it can be useful to have your validator systematically and gracefully halt.
 You can achieve this by either setting the `halt-height` to the height at which
-you want your node to shutdown or by passing the `--halt-height` flag to `gaiad`.
+you want your node to shutdown or by passing the `--halt-height` flag to `enigmagozd`.
 The node will shutdown with a zero exit code at that given height after committing
 the block.
 
@@ -184,12 +184,12 @@ the block.
 
 ### Problem #1: My validator has `voting_power: 0`
 
-Your validator has become jailed. Validators get jailed, i.e. get removed from the active validator set, if they do not vote on `500` of the last `10000` blocks, or if they double sign. 
+Your validator has become jailed. Validators get jailed, i.e. get removed from the active validator set, if they do not vote on `500` of the last `10000` blocks, or if they double sign.
 
-If you got jailed for downtime, you can get your voting power back to your validator. First, if `gaiad` is not running, start it up again:
+If you got jailed for downtime, you can get your voting power back to your validator. First, if `enigmagozd` is not running, start it up again:
 
 ```bash
-gaiad start
+enigmagozd start
 ```
 
 Wait for your full node to catch up to the latest block. Then, you can [unjail your validator](#unjail-validator)
@@ -197,17 +197,17 @@ Wait for your full node to catch up to the latest block. Then, you can [unjail y
 Lastly, check your validator again to see if your voting power is back.
 
 ```bash
-gaiacli status
+enigmagozcli status
 ```
 
 You may notice that your voting power is less than it used to be. That's because you got slashed for downtime!
 
-### Problem #2: My `gaiad` crashes because of `too many open files`
+### Problem #2: My `enigmagozd` crashes because of `too many open files`
 
-The default number of files Linux can open (per-process) is `1024`. `gaiad` is known to open more than `1024` files. This causes the process to crash. A quick fix is to run `ulimit -n 4096` (increase the number of open files allowed) and then restart the process with `gaiad start`. If you are using `systemd` or another process manager to launch `gaiad` this may require some configuration at that level. A sample `systemd` file to fix this issue is below:
+The default number of files Linux can open (per-process) is `1024`. `enigmagozd` is known to open more than `1024` files. This causes the process to crash. A quick fix is to run `ulimit -n 4096` (increase the number of open files allowed) and then restart the process with `enigmagozd start`. If you are using `systemd` or another process manager to launch `enigmagozd` this may require some configuration at that level. A sample `systemd` file to fix this issue is below:
 
 ```toml
-# /etc/systemd/system/gaiad.service
+# /etc/systemd/system/enigmagozd.service
 [Unit]
 Description=Cosmos Gaia Node
 After=network.target
@@ -216,7 +216,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/home/ubuntu
-ExecStart=/home/ubuntu/go/bin/gaiad start
+ExecStart=/home/ubuntu/go/bin/enigmagozd start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096

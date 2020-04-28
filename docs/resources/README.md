@@ -8,7 +8,7 @@ parent:
 
 This folder contains resources on the `gaia` software.
 
-- [`gaiacli` documentation](./gaiacli.md)
+- [`enigmagozcli` documentation](./enigmagozcli.md)
 - [`gaia` genesis file](./genesis.md)
 - [HD Wallets for `gaia`](./hd-wallets.md)
 - [Ledger Integration for `gaia`](./ledger.md)

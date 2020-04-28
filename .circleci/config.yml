@@ -223,7 +223,7 @@ jobs:
           path: /go/src/github.com/cosmos/gaia/gaia-multi-res.yml
 
 # FIXME: The `setup-contract-tests-data` make target is broken as it completely
-# overrides the .gaiad directory.
+# overrides the .enigmagozd directory.
 #
 #  contract_tests:
 #    executor: golang

@@ -5,10 +5,10 @@
 请注意，您可以通过运行以下命令为您自己的 testnet 生成默认的 genesis 文件：
 
 ```bash
-gaiad init <moniker> --chain-id <chain-id>
+enigmagozd init <moniker> --chain-id <chain-id>
 ```
 
-genesis 文件存储在 `~/.gaiad/config/genesis.toml`.
+genesis 文件存储在 `~/.enigmagozd/config/genesis.toml`.
 
 ## 什么是创世文件
 
@@ -16,9 +16,9 @@ genesis 文件是一个 JSON 文件，用于定义区块链的初始状态。 �
 
 genesis 文件中定义的状态包含所有必要的信息，如初始令牌分配、创建时间、默认参数等。 我们来分别描述这些信息。
 
-## Genesis 时间和链ID
+## Genesis 时间和链 ID
 
-`genesis_time`定义在 genesis 文件的顶部。 它是一个“UTC”时间戳，指示区块链何时启动。 此时，创世记验证人应该上线并开始参与共识过程。 当超过2/3的生成验证人（通过投票权加权）在线时，区块链启动。
+`genesis_time`定义在 genesis 文件的顶部。 它是一个“UTC”时间戳，指示区块链何时启动。 此时，创世记验证人应该上线并开始参与共识过程。 当超过 2/3 的生成验证人（通过投票权加权）在线时，区块链启动。
 
 ```json
 "genesis_time": "2019-03-13T17:00:00.000000000Z",
@@ -68,9 +68,9 @@ genesis 文件中定义的状态包含所有必要的信息，如初始令牌分
 在本节中，定义了初始分配的 Token。 可以通过直接编辑 genesis 文件手动添加帐户，但也可以使用以下命令：
 
 ```bash
-// Example: gaiad add-genesis-account cosmos1qs8tnw2t8l6amtzvdemnnsq9dzk0ag0z37gh3h 10000000uatom
+// Example: enigmagozd add-genesis-account cosmos1qs8tnw2t8l6amtzvdemnnsq9dzk0ag0z37gh3h 10000000uatom
 
-gaiad add-genesis-account <account-address> <amount><denom>
+enigmagozd add-genesis-account <account-address> <amount><denom>
 ```
 
 这个命令在 `app_state.accounts` 下创建一个条目。
@@ -151,13 +151,13 @@ gaiad add-genesis-account <account-address> <amount><denom>
 
 - `pool`
   - `not_bonded_tokens`: 在创世文件中没有绑定（即委托）的 token 数量。 通常情况下，它与权益 token （本例中是 `uatom`）的总供应量相等。
-  - `bonded_tokens`: 在创世文件中绑定的 token 数量，通常是0。
+  - `bonded_tokens`: 在创世文件中绑定的 token 数量，通常是 0。
 - `params`
   - `unbonding_time`: 以**纳秒**为单位的解绑延迟时间。
   - `max_validators`: 最大验证人节点数量。
   - `max_entries`: 每对验证人和委托人之间可进行解委托、重新委托的最大条目数。
   - `bond_denom`: 权益代币符号。
-- `last_total_power`: 总投票权重。在创世文件通常是0（除非创世文件使用了之前的状态）。
+- `last_total_power`: 总投票权重。在创世文件通常是 0（除非创世文件使用了之前的状态）。
 - `last_validator_powers`: 最后一个区块的状态中每个验证人的投票权重。在创世文件中通常是 null（除非创世文件使用了之前的状态）。
 - `validators`: 最后一个区块中的验证人列表。在创世文件中通常是 null（除非创世文件使用了之前的状态）。
 - `bonds`: 最后一个区块中的委托列表。在创世文件中通常是 null（除非创世文件使用了之前的状态）。
@@ -193,7 +193,7 @@ gaiad add-genesis-account <account-address> <amount><denom>
   - `annual_provisions`: 每块重新计算。初始值是 `0.000000000000000000`。
 - `params`
   - `mint_denom`: 增发权益代币面值，此处是 `uatom`。
-  - `inflation_rate_change`: 通胀每年最大变化。 
+  - `inflation_rate_change`: 通胀每年最大变化。
   - `inflation_max`: 最高通胀水平。
   - `inflation_min`: 最低通胀水平。
   - `goal_bonded`: 目标绑定量占总供应量百分比。如果委托 token 的百分比低于此目标，则通胀率会增加（在`inflation_rate_change`之后），直至达到`inflation_max`。 如果委托 token 的百分比高于此目标，则通胀率会下降（在`inflation_rate_change`之后），直至达到`inflation_min`。
@@ -228,16 +228,16 @@ gaiad add-genesis-account <account-address> <amount><denom>
 - `fee_pool`
   - `community_pool`: 用于支付奖励的 token 放在公共池中，它通过治理提案分配。在创世文件中通常是 null。
 - `community_tax`: 税率，即交易费和出块收益中需要放入公共池部分的百分比。
-- `base_proposer_reward`: 区块提议者在有效区块中收取的交易费用奖励的基础部分。 如果值为`0.010000000000000000`，则1％的费用将转给提议者。
-- `bonus_proposer_reward`: 如果区块提议者收集了 2/3 （该块有效的最小值）加权投票的预提交，则获得 `base_proposer_reward` 奖励。  如果区块提议者收集了100％加权投票的预提交，则奖励会再线性增加`bonus_proposer_reward`。
+- `base_proposer_reward`: 区块提议者在有效区块中收取的交易费用奖励的基础部分。 如果值为`0.010000000000000000`，则 1％的费用将转给提议者。
+- `bonus_proposer_reward`: 如果区块提议者收集了 2/3 （该块有效的最小值）加权投票的预提交，则获得 `base_proposer_reward` 奖励。 如果区块提议者收集了 100％加权投票的预提交，则奖励会再线性增加`bonus_proposer_reward`。
 - `withdraw_addr_enabled`: 如果是`true`，委托人可以设置不同的地址来取回他们的奖励。 如果要在创世时禁用转账，则要设置为`false`，因为它可以绕过转账限制。
 - `delegator_withdraw_infos`: 委托人收益地址列表。 如果没有从之前的状态导出，一般是`null`。
-- `previous_proposer`: 上一个块的提议者，  如果没有从之前的状态导出，则设置为""。
+- `previous_proposer`: 上一个块的提议者， 如果没有从之前的状态导出，则设置为""。
 - `outstanding_rewards`: 未付（未提取）奖励。如果没有从之前的状态导出，设置为`null`。
 - `validator_accumulated_commission`: 未付（未提取）验证人佣金。如果没有从之前的状态导出，设置为`null`。
 - `validator_historical_rewards`: 验证人的历史奖励相关的信息，由`distribution`模块用于各种计算。 如果没有从之前的状态导出，设置为`null`。
 - `validators_current_rewards`: 验证人的当前奖励相关的信息，由`distribution`模块用于各种计算。 如果没有从之前的状态导出，设置为`null`。
-- `delegator_starting_infos`: Tracks the previous validator period, the delegation's amount of staking token, and the creation height (to check later on if any slashes have occurred). 跟踪先前的验证人时期，委托的 token 数量和创建高度（稍后检查是否发生了需要惩罚的事件）。  如果没有从之前的状态导出，设置为`null`。
+- `delegator_starting_infos`: Tracks the previous validator period, the delegation's amount of staking token, and the creation height (to check later on if any slashes have occurred). 跟踪先前的验证人时期，委托的 token 数量和创建高度（稍后检查是否发生了需要惩罚的事件）。 如果没有从之前的状态导出，设置为`null`。
 - `validator_slash_events`: Set of information related to the past slashing of validators. Set to `null` if genesis was not exported from previous state. 过往验证人惩罚事件相关的信息集。 如果没有从之前的状态导出，设置为`null`。
 
 ### 治理（Governance）
@@ -273,7 +273,7 @@ gaiad add-genesis-account <account-address> <amount><denom>
 
 让我们来分别解读这些参数：
 
-- `starting_proposal_id`: 此参数定义第一个提案的ID，每个提案都由唯一ID标识。
+- `starting_proposal_id`: 此参数定义第一个提案的 ID，每个提案都由唯一 ID 标识。
 - `deposits`: 每个提案 ID 的保证金列表。如果没有从之前的状态导出，设置为`null`。
 - `votes`: 每个提案 ID 的投票列表。 如果没有从之前的状态导出，设置为`null`。
 - `proposals`: 所有提案列表。如果没有从之前的状态导出，设置为`null`。
@@ -323,12 +323,12 @@ The `slashing` module handles the logic to slash delegators if their validator m
 
 ### 创世交易（Genesis Transactions）
 
-默认情况下，genesis文件不包含任何`gentxs`。 `gentx`是一种交易，在创世文件中的将`accounts`下的 token 委托给验证人节点，本质上就是在创世时创建验证人。 在`genesis_time`之后，一旦有超过 2/3 的验证人（加权投票）作为有效`gentx`的接收者上线，该链就会启动。
+默认情况下，genesis 文件不包含任何`gentxs`。 `gentx`是一种交易，在创世文件中的将`accounts`下的 token 委托给验证人节点，本质上就是在创世时创建验证人。 在`genesis_time`之后，一旦有超过 2/3 的验证人（加权投票）作为有效`gentx`的接收者上线，该链就会启动。
 
-可以手动将`gentx`添加到genesis文件，或通过以下命令：
+可以手动将`gentx`添加到 genesis 文件，或通过以下命令：
 
 ```bash
-gaiad collect-gentxs
+enigmagozd collect-gentxs
 ```
 
-此命令将存储在`~/.gaiad/config/gentx`中的所有`gentxs`添加到genesis文件中。 要创建创世纪交易，请单击[此处](./validators/validator-setup.md#participation-in-genesis-as-a-validator)。
+此命令将存储在`~/.enigmagozd/config/gentx`中的所有`gentxs`添加到 genesis 文件中。 要创建创世纪交易，请单击[此处](./validators/validator-setup.md#participation-in-genesis-as-a-validator)。

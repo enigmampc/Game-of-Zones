@@ -1,13 +1,12 @@
 ---
-
 - name: Ensure keys folder exists locally
   file: path=keys state=directory
   connection: local
   run_once: true
   become: no
 
-- name: Create gaiad user
-  user: name=gaiad home=/home/gaiad shell=/bin/bash
+- name: Create enigmagozd user
+  user: name=enigmagozd home=/home/enigmagozd shell=/bin/bash
 
 - name: Copy binary
   copy:
@@ -16,7 +15,7 @@
     mode: 0755
 
 - name: Copy service file
-  copy: src=gaiad.service dest=/etc/systemd/system/gaiad.service mode=0755
+  copy: src=enigmagozd.service dest=/etc/systemd/system/enigmagozd.service mode=0755
   notify: reload systemd
 
 - name: Get node ID
@@ -25,16 +24,16 @@
   register: nodeid
 
 - name: Create initial transaction
-  command: "/usr/bin/gaiad init gen-tx --name=node{{nodeid.stdout_lines[0]}} --ip={{inventory_hostname}}"
+  command: "/usr/bin/enigmagozd init gen-tx --name=node{{nodeid.stdout_lines[0]}} --ip={{inventory_hostname}}"
   register: gentxresult
   become: yes
-  become_user: gaiad
+  become_user: enigmagozd
   args:
-    creates: /home/gaiad/.gaiad/config/gentx
+    creates: /home/enigmagozd/.enigmagozd/config/gentx
 
 - name: Get wallet word seed from result of initial transaction locally
   when: gentxresult["changed"]
-  shell: "echo '{{gentxresult.stdout}}' | python -c 'import json,sys ; print json.loads(\"\".join(sys.stdin.readlines()))[\"app_message\"][\"secret\"]'"
+  shell: 'echo ''{{gentxresult.stdout}}'' | python -c ''import json,sys ; print json.loads("".join(sys.stdin.readlines()))["app_message"]["secret"]'''
   changed_when: false
   register: walletkey
   connection: local
@@ -46,7 +45,7 @@
   connection: local
 
 - name: Find gentx file
-  command: "ls /home/gaiad/.gaiad/config/gentx"
+  command: "ls /home/enigmagozd/.enigmagozd/config/gentx"
   changed_when: false
   register: gentxfile
 
@@ -58,7 +57,7 @@
 - name: Get gen-tx file
   fetch:
     dest: files/
-    src: "/home/gaiad/.gaiad/config/gentx/{{gentxfile.stdout_lines[0]}}"
+    src: "/home/enigmagozd/.enigmagozd/config/gentx/{{gentxfile.stdout_lines[0]}}"
     flat: yes
 
 - name: Compress gathered gen-tx files locally
@@ -67,12 +66,11 @@
   connection: local
 
 - name: Unpack gen-tx archive
-  unarchive: src=files/gen-tx.tgz dest=/home/gaiad/.gaiad/config/gentx owner=gaiad
+  unarchive: src=files/gen-tx.tgz dest=/home/enigmagozd/.enigmagozd/config/gentx owner=enigmagozd
 
 - name: Generate genesis.json
-  command: "/usr/bin/gaiad init --with-txs --name=node{{nodeid.stdout_lines[0]}} --chain-id={{TESTNET_NAME}}"
+  command: "/usr/bin/enigmagozd init --with-txs --name=node{{nodeid.stdout_lines[0]}} --chain-id={{TESTNET_NAME}}"
   become: yes
-  become_user: gaiad
+  become_user: enigmagozd
   args:
-    creates: /home/gaiad/.gaiad/config/genesis.json
-
+    creates: /home/enigmagozd/.enigmagozd/config/genesis.json

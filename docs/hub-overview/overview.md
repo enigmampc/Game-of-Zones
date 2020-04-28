@@ -22,41 +22,40 @@ Do your own research and take precautions in regards to wallet security. Neither
 
 These community-maintained web and mobile wallets allow you to store & transfer ATOM, delegate ATOM to validators, and vote on on-chain governance proposals. Note that we do not endorse any of the wallets, they are listed for your convenience.
 
-* [Atomic Wallet](https://atomicwallet.io/) - Android, Linux, macOS, Windows
-* [Cobo](https://cobo.com/) - Android, iOS
-* [Cosmostation](https://www.cosmostation.io/) - Android, iOS
-* [Huobi Wallet](https://www.huobiwallet.com/) - Android, iOS
-* [imToken](https://token.im/) - Android, iOS
-* [Keplr](https://wallet.keplr.app) - Web
-* [Lunagram](https://lunamint.com/) - Android, iOS
-* [Lunie](https://lunie.io) - Web
-* [Math Wallet](https://www.mathwallet.org/en/) - Android, iOS, Web
-* [Rainbow Wallet](https://www.rainbow.one) - Android, iOS
-* [Qbao Wallet](https://qbao.fund/) - Android, iOS
-* [Trust Wallet](https://trustwallet.com/) Android, iOS
-* [Wetez](https://www.wetez.io/pc/homepage) - Android, iOS
-
+- [Atomic Wallet](https://atomicwallet.io/) - Android, Linux, macOS, Windows
+- [Cobo](https://cobo.com/) - Android, iOS
+- [Cosmostation](https://www.cosmostation.io/) - Android, iOS
+- [Huobi Wallet](https://www.huobiwallet.com/) - Android, iOS
+- [imToken](https://token.im/) - Android, iOS
+- [Keplr](https://wallet.keplr.app) - Web
+- [Lunagram](https://lunamint.com/) - Android, iOS
+- [Lunie](https://lunie.io) - Web
+- [Math Wallet](https://www.mathwallet.org/en/) - Android, iOS, Web
+- [Rainbow Wallet](https://www.rainbow.one) - Android, iOS
+- [Qbao Wallet](https://qbao.fund/) - Android, iOS
+- [Trust Wallet](https://trustwallet.com/) Android, iOS
+- [Wetez](https://www.wetez.io/pc/homepage) - Android, iOS
 
 ## Cosmos Hub Explorers
 
 These block explorers allow you to search, view and analyze Cosmos Hub data&mdash;like blocks, transactions, validators, etc.
 
-* [Big Dipper](https://cosmos.bigdipper.live)
-* [Cosmos Overview](https://genesislab.net)
-* [Coris](http://coris.network)
-* [Cosmos Visualizer](https://nylira.net/3d)
-* [Hubble](https://hubble.figment.network)
-* [LOOK Explorer](https://cosmos.ping.pub)
-* [Mintscan](https://mintscan.io)
-* [Stargazer](https://stargazer.certus.one)
+- [Big Dipper](https://cosmos.bigdipper.live)
+- [Cosmos Overview](https://genesislab.net)
+- [Coris](http://coris.network)
+- [Cosmos Visualizer](https://nylira.net/3d)
+- [Hubble](https://hubble.figment.network)
+- [LOOK Explorer](https://cosmos.ping.pub)
+- [Mintscan](https://mintscan.io)
+- [Stargazer](https://stargazer.certus.one)
 
 ## Cosmos Hub CLI
 
-`gaiacli` is a command-line interface that lets you interact with the Cosmos Hub. `gaiacli` is the only tool that supports 100% of the Cosmos Hub features, including accounts, transfers, delegation, and governance. Learn more about `gaiacli` with the [delegator's CLI guide](../delegators/delegator-guide-cli.md).
+`enigmagozcli` is a command-line interface that lets you interact with the Cosmos Hub. `enigmagozcli` is the only tool that supports 100% of the Cosmos Hub features, including accounts, transfers, delegation, and governance. Learn more about `enigmagozcli` with the [delegator's CLI guide](../delegators/delegator-guide-cli.md).
 
 ## Running a full-node on the Cosmos Hub Mainnet
 
-In order to run a full-node for the Cosmos Hub mainnet, you must first [install `gaiad`](../gaia-tutorials/installation.md). Then, follow [the guide](../gaia-tutorials/join-mainnet.md).
+In order to run a full-node for the Cosmos Hub mainnet, you must first [install `enigmagozd`](../gaia-tutorials/installation.md). Then, follow [the guide](../gaia-tutorials/join-mainnet.md).
 
 If you are looking to run a validator node, follow the [validator setup guide](../validators/validator-setup.md).
 
@@ -64,9 +63,9 @@ If you are looking to run a validator node, follow the [validator setup guide](.
 
 Have questions, comments, or new ideas? Participate in the Cosmos community through one of the following channels. Also check out the [latest events](https://cosmos.network/community).
 
-* [Cosmos Community Chat](https://t.me/cosmosproject)
-* [Cosmos Developer Chat](https://riot.im/app/#/room/#cosmos:matrix.org)
-* [Cosmos Forum](https://forum.cosmos.network)
-* [Cosmos on Reddit](https://reddit.com/r/cosmosnetwork)
+- [Cosmos Community Chat](https://t.me/cosmosproject)
+- [Cosmos Developer Chat](https://riot.im/app/#/room/#cosmos:matrix.org)
+- [Cosmos Forum](https://forum.cosmos.network)
+- [Cosmos on Reddit](https://reddit.com/r/cosmosnetwork)
 
 To learn more about the Cosmos Hub and how it fits within the Cosmos Network, visit [cosmos.network](https://cosmos.network).

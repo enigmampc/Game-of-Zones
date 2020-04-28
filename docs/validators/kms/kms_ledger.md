@@ -16,11 +16,11 @@ KMS and Ledger Tendermint app are currently work in progress. Details may vary. 
 
 You should be able to find the Tendermint app in Ledger Live.
 
-*Note: at the moment, you might need to enable `developer mode` in Ledger Live settings*
+_Note: at the moment, you might need to enable `developer mode` in Ledger Live settings_
 
 ## KMS configuration
 
-In this section, we will configure a KMS to use a Ledger device running the Tendermint Validator App. 
+In this section, we will configure a KMS to use a Ledger device running the Tendermint Validator App.
 
 ### Config file
 
@@ -40,11 +40,11 @@ secret_key = "~/.tmkms/secret_connection.key"
 chain_ids = ["gaia-11001"]
 ```
 
-- Edit `addr` to point to your `gaiad` instance.
-- Adjust `chain-id` to match your `.gaiad/config/config.toml` settings.
+- Edit `addr` to point to your `enigmagozd` instance.
+- Adjust `chain-id` to match your `.enigmagozd/config/config.toml` settings.
 - `provider.ledgertm` has not additional parameters at the moment, however, it is important that you keep that header to enable the feature.
 
-*Plug your Ledger device and open the Tendermint validator app.*
+_Plug your Ledger device and open the Tendermint validator app._
 
 ### Generate secret key
 
@@ -56,7 +56,7 @@ tmkms keygen ~/.tmkms/secret_connection.key
 
 ### Retrieve validator key
 
-The last step is to retrieve the validator key that you will use in `gaiad`.
+The last step is to retrieve the validator key that you will use in `enigmagozd`.
 
 Start the KMS:
 
@@ -72,15 +72,15 @@ The output should look similar to:
 07:28:24 [INFO] KMS node ID: 1BC12314E2E1C29015B66017A397F170C6ECDE4A
 ```
 
-The KMS may complain that it cannot connect to gaiad. That is fine, we will fix it in the next section.
+The KMS may complain that it cannot connect to enigmagozd. That is fine, we will fix it in the next section.
 
 This output indicates the validator key linked to this particular device is: `cosmosvalconspub1zcjduepqy53m39prgp9dz3nz96kaav3el5e0th8ltwcf8cpavqdvpxgr5slsd6wz6f`
 
-Take note of the validator pubkey that appears in your screen. *We will use it in the next section.*
+Take note of the validator pubkey that appears in your screen. _We will use it in the next section._
 
 ## Gaia configuration
 
-You need to enable KMS access by editing `.gaiad/config/config.toml`. In this file, modify `priv_validator_laddr` to create a listening address/port or a unix socket in `gaiad`.
+You need to enable KMS access by editing `.enigmagozd/config/config.toml`. In this file, modify `priv_validator_laddr` to create a listening address/port or a unix socket in `enigmagozd`.
 
 For example:
 
@@ -92,13 +92,13 @@ priv_validator_laddr = "tcp://127.0.0.1:26658"
 ...
 ```
 
-Let's assume that you have set up your validator account and called it `kmsval`. You can tell gaiad the key that we've got in the previous section.
+Let's assume that you have set up your validator account and called it `kmsval`. You can tell enigmagozd the key that we've got in the previous section.
 
 ```bash
-gaiad gentx --name kmsval --pubkey {.ValidatorKey} 
+enigmagozd gentx --name kmsval --pubkey {.ValidatorKey}
 ```
 
-Now start `gaiad`. You should see that the KMS connects and receives a signature request.
+Now start `enigmagozd`. You should see that the KMS connects and receives a signature request.
 
 Once the ledger receives the first message, it will ask for confirmation that the values are adequate.
 
