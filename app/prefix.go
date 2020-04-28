@@ -1,4 +1,4 @@
-package util
+package app
 
 const (
 	// Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
