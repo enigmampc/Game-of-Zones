@@ -1,4 +1,4 @@
-module github.com/cosmos/gaia
+module github.com/enigmampc/Game-of-Zones
 
 go 1.14
 

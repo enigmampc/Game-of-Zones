@@ -73,7 +73,7 @@ enigmagozd start
 
 ```bash
 # Clone the gaia repo
-git clone https://github.com/cosmos/gaia.git
+git clone https://github.com/enigmampc/Game-of-Zones.git
 
 # Work from the SDK repo
 cd gaia

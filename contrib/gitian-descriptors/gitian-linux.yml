@@ -20,7 +20,7 @@ packages:
   - "xxd"
   - "quilt"
 remotes:
-  - "url": "https://github.com/cosmos/gaia.git"
+  - "url": "https://github.com/enigmampc/Game-of-Zones.git"
     "dir": "gaia"
 files:
   - "go1.14.linux-amd64.tar.gz"
@@ -64,7 +64,7 @@ script: |
   popd
 
   # Prepare GOPATH and install deps
-  distsrc=${GOPATH}/src/github.com/cosmos/gaia
+  distsrc=${GOPATH}/src/github.com/enigmampc/Game-of-Zones
   mkdir -p ${distsrc}
   pushd ${distsrc}
   tar --strip-components=1 -xf $SOURCEDIST

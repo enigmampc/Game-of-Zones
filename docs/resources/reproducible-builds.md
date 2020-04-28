@@ -16,7 +16,7 @@ This page contains all instructions required to build and sign reproducible Gaia
 
 Make sure your system satisfy minimum requisites as outlined in https://github.com/devrandom/gitian-builder#prerequisites.
 
-All the following instructions have been tested on *Ubuntu 18.04.2 LTS* with *docker 18.06.1-ce* and *docker 18.09.6-ce*.
+All the following instructions have been tested on _Ubuntu 18.04.2 LTS_ with _docker 18.06.1-ce_ and _docker 18.09.6-ce_.
 
 If you are on Mac OS X, make sure you have prepended your `PATH` environment variable with GNU coreutils's path before running the build script:
 
@@ -47,8 +47,9 @@ report (replace `user@example.com` with the GPG identity you want to sign the re
 ```
 
 The above command generates two directories in the current working directory:
-* `gitian-build-linux` containing the `gitian-builder` clone used to drive the build process.
-* `gaia.sigs` containing the signed build report.
+
+- `gitian-build-linux` containing the `gitian-builder` clone used to drive the build process.
+- `gaia.sigs` containing the signed build report.
 
 Replace `linux` in the above command with `darwin` or `windows` to run builds for Mac OS X and Windows respectively.
 Run the following command to build binaries for all platforms (`darwin`, `linux`, and `windows`):
@@ -69,7 +70,7 @@ Please refer to the `contrib/gitian-build.sh`'s help screen for further informat
 
 ## Signatures upload
 
-Once signatures are generated, they could be uploaded to gaia's dedicated repository: https://github.com/cosmos/gaia.sigs.
+Once signatures are generated, they could be uploaded to gaia's dedicated repository: https://github.com/enigmampc/Game-of-Zones.sigs.
 The build script can take care of cloning the signatures repository and commit the signed result too:
 
 ```

@@ -27,7 +27,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/gov"
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	"github.com/cosmos/cosmos-sdk/x/staking"
-	"github.com/cosmos/gaia/app"
+	"github.com/enigmampc/Game-of-Zones/app"
 
 	codecstd "github.com/cosmos/cosmos-sdk/codec/std"
 )

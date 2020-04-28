@@ -25,7 +25,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/bank"
 	bankcmd "github.com/cosmos/cosmos-sdk/x/bank/client/cli"
 
-	"github.com/cosmos/gaia/app"
+	"github.com/enigmampc/Game-of-Zones/app"
 )
 
 var (

@@ -38,24 +38,24 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### Features
 
-- (enigmagozd) [\#119](https://github.com/cosmos/gaia/pull/119) Add support for the `--inter-block-cache` CLI
+- (enigmagozd) [\#119](https://github.com/enigmampc/Game-of-Zones/pull/119) Add support for the `--inter-block-cache` CLI
   flag and configuration.
-- (enigmagozcli) [\#132](https://github.com/cosmos/gaia/pull/132) Add `tx decode` command to decode
+- (enigmagozcli) [\#132](https://github.com/enigmampc/Game-of-Zones/pull/132) Add `tx decode` command to decode
   Base64 encoded transactions.
-- (modules) [\#190](https://github.com/cosmos/gaia/pull/190) Introduce use of the `x/evidence` module.
-- (enigmagozd) [\#191](https://github.com/cosmos/gaia/pull/191) Add debug commands to enigmagozd:
+- (modules) [\#190](https://github.com/enigmampc/Game-of-Zones/pull/190) Introduce use of the `x/evidence` module.
+- (enigmagozd) [\#191](https://github.com/enigmampc/Game-of-Zones/pull/191) Add debug commands to enigmagozd:
   - `pubkey`: decode pubkey from base64, hex or bech32
   - `addr`: convert a address between hex and bech32
   - `raw-bytes` convert raw-bytes to hex
-- (enigmagozcli) [\#191](https://github.com/cosmos/gaia/pull/191) Add cmd `decode-tx`, decodes a tx from hex or base64
-- (modules) [\#196](https://github.com/cosmos/gaia/pull/196) Integrate the `x/upgrade` module.
+- (enigmagozcli) [\#191](https://github.com/enigmampc/Game-of-Zones/pull/191) Add cmd `decode-tx`, decodes a tx from hex or base64
+- (modules) [\#196](https://github.com/enigmampc/Game-of-Zones/pull/196) Integrate the `x/upgrade` module.
 
 ### Client Breaking Changes
 
-- [\#164](https://github.com/cosmos/gaia/pull/164) [\#212](https://github.com/cosmos/gaia/pull/212) The LevelDB-based
+- [\#164](https://github.com/enigmampc/Game-of-Zones/pull/164) [\#212](https://github.com/enigmampc/Game-of-Zones/pull/212) The LevelDB-based
   keybase implementation has been replaced with a 99 designs Keyring library-backed implementation. Keys created and stored
   with previous `gaia` releases need to be migrated through the `enigmagozcli keys migrate` command.
-- (enigmagozcli) [\#326](https://github.com/cosmos/gaia/pull/326) Implement `--offline` flag in all post commands. Some commands
+- (enigmagozcli) [\#326](https://github.com/enigmampc/Game-of-Zones/pull/326) Implement `--offline` flag in all post commands. Some commands
   that did not work with `--generate-only` as `enigmagozcli staking delegate` now work as long as we don't include the offline flag.
 
 ## [v2.0.8] - 2020-04-09
@@ -114,11 +114,11 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### Features
 
-- (enigmagozd) [\#119](https://github.com/cosmos/gaia/pull/119) Add support for the `--halt-time` CLI flag and configuration.
+- (enigmagozd) [\#119](https://github.com/enigmampc/Game-of-Zones/pull/119) Add support for the `--halt-time` CLI flag and configuration.
 
 ### Improvements
 
-- [\#119](https://github.com/cosmos/gaia/pull/119) Refactor and upgrade Circle CI
+- [\#119](https://github.com/enigmampc/Game-of-Zones/pull/119) Refactor and upgrade Circle CI
   configuration.
 - (sdk) Update SDK version to v0.37.1
 
@@ -126,7 +126,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### Bug Fixes
 
-- [\#104](https://github.com/cosmos/gaia/issues/104) Fix `ModuleAccountAddrs` to
+- [\#104](https://github.com/enigmampc/Game-of-Zones/issues/104) Fix `ModuleAccountAddrs` to
   not rely on the `x/supply` keeper to get module account addresses for blacklisting.
 
 ### State Machine Breaking Changes
@@ -190,14 +190,14 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 <!-- Release links -->
 
-[unreleased]: https://github.com/cosmos/gaia/compare/v2.0.8...HEAD
-[v2.0.8]: https://github.com/cosmos/gaia/releases/tag/v2.0.8
-[v2.0.7]: https://github.com/cosmos/gaia/releases/tag/v2.0.7
-[v2.0.6]: https://github.com/cosmos/gaia/releases/tag/v2.0.6
-[v2.0.5]: https://github.com/cosmos/gaia/releases/tag/v2.0.5
-[v2.0.4]: https://github.com/cosmos/gaia/releases/tag/v2.0.4
-[v2.0.3]: https://github.com/cosmos/gaia/releases/tag/v2.0.3
-[v2.0.2]: https://github.com/cosmos/gaia/releases/tag/v2.0.2
-[v2.0.1]: https://github.com/cosmos/gaia/releases/tag/v2.0.1
-[v2.0.0]: https://github.com/cosmos/gaia/releases/tag/v2.0.0
-[v1.0.0]: https://github.com/cosmos/gaia/releases/tag/v1.0.0
+[unreleased]: https://github.com/enigmampc/Game-of-Zones/compare/v2.0.8...HEAD
+[v2.0.8]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.8
+[v2.0.7]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.7
+[v2.0.6]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.6
+[v2.0.5]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.5
+[v2.0.4]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.4
+[v2.0.3]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.3
+[v2.0.2]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.2
+[v2.0.1]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.1
+[v2.0.0]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v2.0.0
+[v1.0.0]: https://github.com/enigmampc/Game-of-Zones/releases/tag/v1.0.0

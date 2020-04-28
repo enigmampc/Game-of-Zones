@@ -10,7 +10,7 @@ This document describes 3 ways to setup a network of `enigmagozd` nodes, each se
 2. Multi-node, local, automated testnet
 3. Multi-node, remote, automated testnet
 
-Supporting code can be found in the [networks directory](https://github.com/cosmos/gaia/tree/master/networks) and additionally the `local` or `remote` sub-directories.
+Supporting code can be found in the [networks directory](https://github.com/enigmampc/Game-of-Zones/tree/master/networks) and additionally the `local` or `remote` sub-directories.
 
 > NOTE: The `remote` network bootstrapping may be out of sync with the latest releases and is not to be relied upon.
 
@@ -65,7 +65,7 @@ This setup puts all the data for `enigmagozd` in `~/.enigmagozd`. You can examin
 
 ## Multi-node, Local, Automated Testnet
 
-From the [networks/local directory](https://github.com/cosmos/gaia/tree/master/networks/local):
+From the [networks/local directory](https://github.com/enigmampc/Game-of-Zones/tree/master/networks/local):
 
 ### Requirements
 
@@ -79,7 +79,7 @@ Build the `enigmagozd` binary (linux) and the `tendermint/gaiadnode` docker imag
 
 ```bash
 # Clone the gaia repo
-git clone https://github.com/cosmos/gaia.git
+git clone https://github.com/enigmampc/Game-of-Zones.git
 
 # Work from the SDK repo
 cd gaia
@@ -200,7 +200,7 @@ BINARY=gaiafoo make localnet-start
 
 ## Multi-Node, Remote, Automated Testnet
 
-The following should be run from the [networks directory](https://github.com/cosmos/gaia/tree/master/networks).
+The following should be run from the [networks directory](https://github.com/enigmampc/Game-of-Zones/tree/master/networks).
 
 ### Terraform & Ansible
 
