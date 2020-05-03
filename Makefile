@@ -238,3 +238,22 @@ test-docker-push: test-docker
 	benchmark \
 	build-docker-gaiadnode localnet-start localnet-stop \
 	docker-single-node
+
+deb: build
+	rm -rf /tmp/EnigmaBlockchain
+	
+	mkdir -p /tmp/EnigmaBlockchain/deb/bin
+	cp ./build/enigmagozcli /tmp/EnigmaBlockchain/deb/bin/enigmagozcli
+	cp ./build/enigmagozd /tmp/EnigmaBlockchain/deb/bin/enigmagozd
+	chmod +x /tmp/EnigmaBlockchain/deb/bin/enigmagozd /tmp/EnigmaBlockchain/deb/bin/enigmagozcli
+	
+	mkdir -p /tmp/EnigmaBlockchain/deb/DEBIAN
+	cp ./packaging_ubuntu/control /tmp/EnigmaBlockchain/deb/DEBIAN/control
+	echo "Version: 0.0.0" >> /tmp/EnigmaBlockchain/deb/DEBIAN/control
+	cp ./packaging_ubuntu/postinst /tmp/EnigmaBlockchain/deb/DEBIAN/postinst
+	chmod 755 /tmp/EnigmaBlockchain/deb/DEBIAN/postinst
+	cp ./packaging_ubuntu/postrm /tmp/EnigmaBlockchain/deb/DEBIAN/postrm
+	chmod 755 /tmp/EnigmaBlockchain/deb/DEBIAN/postrm
+	dpkg-deb --build /tmp/EnigmaBlockchain/deb/ .
+	-rm -rf /tmp/EnigmaBlockchain
+	mv *.deb ./build/

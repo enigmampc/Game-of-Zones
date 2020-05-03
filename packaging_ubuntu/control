@@ -1,0 +1,6 @@
+Package: enigma-goz-blockchain
+Priority: optional
+Architecture: amd64
+Homepage: https://github.com/enigmampc/EnigmaBlockchain
+Maintainer: https://github.com/enigmampc
+Description: The Enigma Blockchain for Game of Zones

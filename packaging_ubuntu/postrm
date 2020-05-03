@@ -1,0 +1,8 @@
+#!/bin/bash
+# This `DEBIAN/postrm` script is run post-uninstallation
+
+set -e
+
+systemctl stop enigma-node    || true
+systemctl disable enigma-node || true
+rm -f /etc/systemd/system/enigma-node.service
